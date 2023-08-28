@@ -5,6 +5,45 @@ import java.util.Scanner;
 
 public class BinaryOperations {
 
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        try {
+            System.out.println("Input the first integer.");
+            int operandA = scanner.nextInt();
+            System.out.println("Input the second integer.");
+            int operandB = scanner.nextInt();
+            System.out.println("Input the operator. (+,-,*,/,<<,>>,>>>,&,|,~,^)");
+            scanner.nextLine();
+            String operator = scanner.nextLine();
+            switch (operator) {
+                case "+":
+                    System.out.println(int2binary(operandA) + " " + operator + " " + int2binary(operandB) + " = " + int2binary(sum(operandA, operandB)));
+                    break;
+                case "-":
+                    System.out.println(
+                            int2binary(operandA) + " " + operator + " " + int2binary(operandB) + " = " + int2binary(difference(operandA, operandB)));
+                    break;
+                case "*":
+                    System.out
+                            .println(int2binary(operandA) + " " + operator + " " + int2binary(operandB) + " = " + int2binary(product(operandA, operandB)));
+                    break;
+                case "/":
+                    System.out
+                            .println(int2binary(operandA) + " " + operator + " " + int2binary(operandB) + " = " + int2binary(quotient(operandA, operandB)));
+                    break;
+
+                default:
+                    throw new IllegalArgumentException("Your operator was invalid");
+            }
+        } catch (InputMismatchException e) {
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        } finally {
+            scanner.close();
+        }
+    }
+
     private static int sum(int a, int b) {
         return a + b;
     }
