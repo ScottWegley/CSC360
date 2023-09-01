@@ -8,6 +8,11 @@ public class BitOperations {
     public static byte right(byte _b) {
         return (byte) (_b & 0b00001111);
     }
+
+    public static byte sixbits(byte _b) {
+        return (byte) ((_b >> 2) & 0b00111111);
+    }
+
     public static String int2binary(int a, int bits) {
         int q = a;
         int r = 0;
