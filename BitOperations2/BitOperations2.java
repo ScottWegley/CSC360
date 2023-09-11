@@ -25,11 +25,9 @@ public class BitOperations2 {
         outB = (byte) ((outB | temp) | (temp << 2));
         return outB;
     }
-    // 11111111
+
     public static void main(String[] args) {
-        // keyextractor((short) 0b0110100101101001, 11);
-        System.out.println(BitOperator.int2binary(keyextractor((short) 0b0110100101101001, 10), 16));
-        // System.out.println(BitOperator.int2binary(expander((byte) 0b00011001), 8));
+        System.out.println(BitOperator.int2binary(keyextractor((short) 0b0110100101101001, 10), 8));
     }
 
 }
