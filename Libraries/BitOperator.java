@@ -8,8 +8,19 @@ public class BitOperator {
         for (int i = 0; i < bits; i++) {
             r = q & 0x01;
             result = r + result;
-            q = q >>> 1;
+            q = urShift(q, 1);
         }
         return result;
+    }
+
+    public static int urShift(int a, int bits) {
+        for (int i = 0; i < bits; i++) {
+            a = a >>> 1 & 0x7FFFFFFF;
+        }
+        return a;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(int2binary(0x00FF, 16));
     }
 }

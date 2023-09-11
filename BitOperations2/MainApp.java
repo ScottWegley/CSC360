@@ -1,4 +1,5 @@
 package BitOperations2;
+
 import Libraries.BitOperator;
 
 public class MainApp {
