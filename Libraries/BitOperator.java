@@ -42,7 +42,7 @@ public class BitOperator {
     }
 
     public static void main(String[] args) {
-        byte b = 0x7F;
+        /* byte b = 0x7F;
         short s = 0x7FFF;
         int i = 0x7FFFFFFF;
         long t = 0x7FFFFFFFFFFFFFFFL;
@@ -53,6 +53,7 @@ public class BitOperator {
         System.out.println(int2binary(urShift(i, 3), 32));
         System.out.println(int2binary(i, 32));
         System.out.println(int2binary(urShift(t, 3), 64));
-        System.out.println(int2binary(t, 64));
+        System.out.println(int2binary(t, 64)); */
+        System.out.println(int2binary((byte)(-100),8));
     }
 }
