@@ -15,8 +15,6 @@ public class BitOperations3 {
             }
         }
 
-        // System.out.println(BitOperator.int2binary(S1((byte) 0b11111001), 8));
-        // System.out.println(BitOperator.int2binary(S2((byte) 0b11110111), 8));
     }
 
     private static byte S2(byte _b) {
