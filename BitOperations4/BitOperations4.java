@@ -22,8 +22,6 @@ public class BitOperations4 {
                                 BitOperator.int2binary(f, 6));
             }
         }
-
-        // feistel((byte) 0b10110111, (byte) 0xFF);
     }
 
     public static byte feistel(byte R, byte K) {
