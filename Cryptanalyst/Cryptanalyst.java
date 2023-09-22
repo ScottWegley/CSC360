@@ -36,6 +36,11 @@ class Cryptanalyst {
                 sols.add(p);
             }
         }
+        StandardCeasarSolution[] out = new StandardCeasarSolution[sols.size()];
+        for (int i = 0; i < out.length; i++) {
+            out[i] = sols.get(i);
+        }
+        return out;
     }
 
     public static PotentialSolution[] bruteforceSubstitution(String cipherText, double sThreshold) {
