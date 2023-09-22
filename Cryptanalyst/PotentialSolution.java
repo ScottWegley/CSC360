@@ -23,6 +23,17 @@ class PotentialSolution {
     }
 
     private static void initializeDictionary() {
+        Scanner scanner = null;
+        try {
+            scanner = new Scanner(new File("C:\\Code\\CSC360\\Cryptanalyst\\dictionary.txt"));
+            dictionary = new ArrayList<>();
+            while (scanner.hasNextLine()) {
+                dictionary.add(scanner.nextLine().toUpperCase());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        scanner.close();
     }
 
     public double getAccuracy() {
