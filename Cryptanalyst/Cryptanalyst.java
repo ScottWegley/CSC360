@@ -20,6 +20,22 @@ class Cryptanalyst {
         if (sThreshold < 0) {
             sThreshold = 0;
         }
+        ArrayList<StandardCeasarSolution> sols = new ArrayList<>();
+        for (int i = 0; i < BASE_ALPHABET.length; i++) {
+            String[] sAlpha = shiftedAlphabet(i);
+            String decoded = "";
+            for (int j = 0; j < cipherText.length(); j++) {
+                if (cipherText.charAt(j) == ' ') {
+                    decoded = decoded + ' ';
+                    continue;
+                }
+                decoded = decoded + sAlpha[cipherText.charAt(j) - 65];
+            }
+            StandardCeasarSolution p = new StandardCeasarSolution(decoded, i);
+            if (p.getAccuracy() >= sThreshold) {
+                sols.add(p);
+            }
+        }
     }
 
     public static PotentialSolution[] bruteforceSubstitution(String cipherText, double sThreshold) {
