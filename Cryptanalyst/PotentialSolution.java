@@ -8,7 +8,7 @@ import java.util.Scanner;
  * A class to store the attempted decryption of a text and what percentage of
  * the words are real words.
  */
-class PotentialSolution {
+abstract class PotentialSolution {
 
     /** The potentially decrypted text. */
     private String text;
