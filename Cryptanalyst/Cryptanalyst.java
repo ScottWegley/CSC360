@@ -1,50 +1,32 @@
 package Cryptanalyst;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.util.ArrayList;
-import java.util.Scanner;
-
 class Cryptanalyst {
 
+    public static String[] BASE_ALPHABET = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
+            "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+
     public static void main(String[] args) {
-        dictionaryTest();
+        shiftedAlphabet(27);
     }
 
-    private static void dictionaryTest() {
-        try {
-            File dictionary = new File("C:\\Code\\CSC360\\Cryptanalyst\\dictionary.txt");
-            File mask = new File("C:\\Code\\CSC360\\Cryptanalyst\\out.txt");
-            ArrayList<String> permitted = new ArrayList<>();
-            ArrayList<String> output = new ArrayList<>();
+    public static int crackCeasar(String cipherText, int sThreshold) {
+        return 0;
+    }
 
-            BufferedReader mReader = new BufferedReader(new FileReader(mask));
-            String line;
-            while ((line = mReader.readLine()) != null) {
-                permitted.add(line);
-            }
-            BufferedReader dReader = new BufferedReader(new FileReader(dictionary));
+    public static int crackAnySubstitution(String cipherText, int sThreshold) {
+        return 0;
+    }
 
-            while ((line = dReader.readLine()) != null) {
-                output.add(line);
-            }
-            dReader.close();
-            mReader.close();
-
-            for (String s : output) {
-                if(s.length() <= 2) {
-                    if(!permitted.contains(s)){
-                        continue;
-                    }
-                }
-                
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
+    public static String[] shiftedAlphabet(int shift) {
+        String[] sAlphabet = new String[BASE_ALPHABET.length];
+        while(shift < 0){
+            shift += 26;
         }
+        while(shift > 26){
+            shift -= 26;
+        }
+        System.out.println("Currently shifting by " + shift);
+        return sAlphabet;
     }
 
 }
