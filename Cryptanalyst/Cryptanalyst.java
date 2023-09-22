@@ -16,7 +16,17 @@ class Cryptanalyst {
     public static final String QUOTE_FOUR = "DQGJRGVDLGOHWWKHUHEHOLJKWDQGWKHUHZDVOLJKW";
 
     public static void main(String[] args) {
-        shiftedAlphabet(27);
+        StandardCeasarSolution[] ONE_SOLS = bruteforceCeaser(QUOTE_ONE, .3);
+        for (StandardCeasarSolution s : ONE_SOLS) {
+            System.out.println("================================================");
+            for (int i = 0; i < shiftedAlphabet(s.getShift()).length; i++) {
+                System.out.print(shiftedAlphabet(s.getShift())[i]);
+            }
+            System.out.print(" || Shifted by " + s.getShift());
+            System.out.print('\n');
+            System.out.println("Accuracy: " + (s.getAccuracy() * 100) + "%");
+            System.out.println(s.getText());
+        }
     }
 
     public static StandardCeasarSolution[] bruteforceCeaser(String cipherText, double sThreshold) {
