@@ -25,18 +25,22 @@ class Cryptanalyst {
             while ((line = mReader.readLine()) != null) {
                 permitted.add(line);
             }
-
-
-            for (String string : permitted) {
-                System.out.println("Allowing: " + string);
-            }
             BufferedReader dReader = new BufferedReader(new FileReader(dictionary));
 
             while ((line = dReader.readLine()) != null) {
-                System.out.println("Checking: " + line);
+                output.add(line);
             }
             dReader.close();
             mReader.close();
+
+            for (String s : output) {
+                if(s.length() <= 2) {
+                    if(!permitted.contains(s)){
+                        continue;
+                    }
+                }
+                
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
