@@ -23,13 +23,15 @@ class Cryptanalyst {
 
     public static String[] shiftedAlphabet(int shift) {
         String[] sAlphabet = new String[BASE_ALPHABET.length];
-        while(shift < 0){
+        while (shift < 0) {
             shift += 26;
         }
-        while(shift > 26){
+        while (shift >= 26) {
             shift -= 26;
         }
-        System.out.println("Currently shifting by " + shift);
+        for (int i = 0; i < BASE_ALPHABET.length; i++) {
+            sAlphabet[(i + shift > 25 ? i + shift - 26 : i + shift)] = BASE_ALPHABET[i];
+        }
         return sAlphabet;
     }
 
