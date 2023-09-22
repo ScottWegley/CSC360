@@ -1,8 +1,12 @@
 package Cryptanalyst;
 
+import java.util.ArrayList;
+
 class Cryptanalyst {
 
-    public static String[] BASE_ALPHABET = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
+    /** The standard 26 letter english alphabet. */
+    public static final String[] BASE_ALPHABET = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
+            "O",
             "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
 
     public static void main(String[] args) {
