@@ -14,6 +14,12 @@ class Cryptanalyst {
     }
 
     public static StandardCeasarSolution[] bruteforceCeaser(String cipherText, double sThreshold) {
+        if (sThreshold > 1) {
+            sThreshold = 1;
+        }
+        if (sThreshold < 0) {
+            sThreshold = 0;
+        }
     }
 
     public static PotentialSolution[] bruteforceSubstitution(String cipherText, double sThreshold) {
