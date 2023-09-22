@@ -9,6 +9,7 @@ class PotentialSolution {
     private static ArrayList<String> dictionary = null;
     public PotentialSolution(String _s) {
         text = _s.toUpperCase().trim();
+        calculateAccuracy();
     }
     private void calculateAccuracy() {
         if (dictionary == null) {
