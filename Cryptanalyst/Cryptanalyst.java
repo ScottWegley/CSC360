@@ -9,6 +9,7 @@ class Cryptanalyst {
             "O",
             "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
 
+    public static String[][] ALPHABET_BUCKETS = null;
 
     public static final String QUOTE_ONE = "EUA IGT LUUR GRR ZNK VKUVRK YUSK UL ZNK ZOSK GTJ YUSK UL ZNK VKUVRK GRR ZNK ZOSK HAZ EUA IGTTUZ LUUR GRR ZNK VKUVRK GRR UL ZNK ZOSK";
     public static final String QUOTE_TWO = "B SMVE M HPEMJ RSMR LKE HMY RSBQ KMRBLK WBGG PBQE UN GBVE LUR RSE RPUE JEMKBKC LI BRQ TPEEH WE SLGH RSEQE RPURSQ RL AE QEGI EVBHEKR RSMR MGG JEK MPE TPEMREH EOUMG";
@@ -29,6 +30,18 @@ class Cryptanalyst {
         }
     }
 
+    /**
+     * This function brute-forces Ceaser Ciphers to return the decrypted message.
+     * (Will work on any cipher where the order of letters is constant with the
+     * english alphabet)
+     * 
+     * @param cipherText The encrypted text you wish to brute force.
+     * @param sThreshold A number between 0 and 1 representing the percentage of
+     *                   real words (checked against the ~10000 most commmon english
+     *                   words) required
+     *                   to be considered a {@link PotentialSolution}.
+     * @return
+     */
     public static StandardCeasarSolution[] bruteforceCeaser(String cipherText, double sThreshold) {
         if (sThreshold > 1) {
             sThreshold = 1;
@@ -64,6 +77,16 @@ class Cryptanalyst {
         return new PotentialSolution[] {};
     }
 
+    /**
+     * Returns an an array with the characters from the standard english alphabet.
+     * 
+     * @param shift The difference between each letter's position in this shifted
+     *              alphabet and it's natural order.
+     *              Shift is normalized to a minimum value of zero and maximum value
+     *              of 26. This handles negative shift amounts
+     *              and shifting by more than the length of the alphabet.
+     * @return An alphabet with each letter shifted by the specified amount.
+     */
     public static String[] shiftedAlphabet(int shift) {
         String[] sAlphabet = new String[BASE_ALPHABET.length];
         while (shift < 0) {
