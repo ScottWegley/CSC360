@@ -13,12 +13,12 @@ class Cryptanalyst {
         shiftedAlphabet(27);
     }
 
-    public static int crackCeasar(String cipherText, int sThreshold) {
-        return 0;
+    public static StandardCeasarSolution[] bruteforceCeaser(String cipherText, double sThreshold) {
     }
 
-    public static int crackAnySubstitution(String cipherText, int sThreshold) {
-        return 0;
+    public static PotentialSolution[] bruteforceSubstitution(String cipherText, double sThreshold) {
+
+        return new PotentialSolution[] {};
     }
 
     public static String[] shiftedAlphabet(int shift) {
