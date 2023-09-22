@@ -1285,6 +1285,7 @@ candle
 candles
 candy
 cannon
+cannot
 canon
 cant
 canvas
