@@ -7,4 +7,29 @@ public class FrequencyAnalyst {
             'O',
             'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
     public static ArrayList<ArrayList<Character>> alphabets = new ArrayList<>();
+    public static void main(String[] args) throws Exception {
+    public static void genOutput() throws Exception {
+        File file = new File("C:\\Code\\CSC360\\Cryptanalyst\\dictionary.txt");
+        Scanner scanner = new Scanner(file);
+        File out = new File("C:\\Code\\CSC360\\Cryptanalyst\\outputs\\threeLetterAt1.txt");
+        FileWriter writer = new FileWriter(out);
+        ArrayList<Character> temp = new ArrayList<>();
+        while (scanner.hasNextLine()) {
+            String in = scanner.nextLine();
+            if (in.length() == 3) {
+                System.out.println(in);
+                if (!temp.contains(in.charAt(1))) {
+                    temp.add(in.charAt(1));
+                }
+            }
+        }
+
+        for (Character t : temp) {
+            writer.write(t + "  \n");
+        }
+
+        scanner.close();
+        writer.close();
+    }
+    }
 }
