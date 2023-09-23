@@ -40,6 +40,27 @@ public class FrequencyAnalyst {
         scanner.close();
         writer.close();
     }
+
+    /**
+     * Loads the FreqTest file into a HashMap.
+     */
+    private static void loadFrequencyTest() throws Exception {
+        currFreq = new HashMap<>();
+        Scanner scanner = new Scanner(new File("C:\\Code\\CSC360\\Cryptanalyst\\FreqTest.txt"));
+        while (scanner.hasNextLine()) {
+            String in = scanner.nextLine();
+            char header = in.charAt(1);
+            char[] possible = in.substring(in.indexOf(':') + 1).toCharArray();
+            ArrayList<Character> out = new ArrayList<Character>();
+            for (int i = 0; i < possible.length; i++) {
+                out.add(possible[i]);
+            }
+            currFreq.put(header, out);
+
+        }
+        scanner.close();
+    }
+
     public static void printFreqTestReport(int threshold) throws Exception {
 
         if (currFreq == null) {
