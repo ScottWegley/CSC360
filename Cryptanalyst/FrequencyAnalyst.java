@@ -16,7 +16,17 @@ public class FrequencyAnalyst {
             'O',
             'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
     public static ArrayList<ArrayList<Character>> alphabets = new ArrayList<>();
+
+    private static char[] testArray = { 'B', 'Q', 'M', 'R', 'S', 'G', 'W', 'L', 'A', 'E' };
+
     public static void main(String[] args) throws Exception {
+        try {
+            // printFreqTestReport(3);
+            applyFrequencyTest(QUOTE_TWO, 0.90, 1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void applyFrequencyTest(String encoded, double threshold, int alphaThreshold) throws Exception {
         if (currFreq == null) {
