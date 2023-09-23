@@ -170,7 +170,7 @@ public class FrequencyAnalyst {
      */
     private static void loadFrequencyTest() throws Exception {
         currFreq = new HashMap<>();
-        Scanner scanner = new Scanner(new File("C:\\Code\\CSC360\\Cryptanalyst\\FreqTest.txt"));
+        Scanner scanner = new Scanner(new File("C:\\Code\\CSC360\\Cryptanalyst\\FreqTestQ2.txt"));
         while (scanner.hasNextLine()) {
             String in = scanner.nextLine();
             char header = in.charAt(1);
