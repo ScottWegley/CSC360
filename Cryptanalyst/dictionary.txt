@@ -1,5 +1,4 @@
 a
-aaa
 aaron
 abandoned
 abc
@@ -1657,7 +1656,6 @@ clusters
 cms
 cnet
 cnetcom
-cnn
 coach
 coaches
 coaching
@@ -2162,7 +2160,6 @@ cruises
 cruz
 cry
 crystal
-css
 cst
 cuba
 cube
@@ -3270,7 +3267,6 @@ favourite
 favourites
 fax
 fbi
-fcc
 fda
 fear
 fears
@@ -3653,7 +3649,6 @@ gays
 gazette
 gba
 gbp
-gcc
 gdp
 gear
 geek
@@ -4230,7 +4225,6 @@ ieee
 if
 ignore
 ignored
-iii
 ill
 illegal
 illinois
@@ -5979,7 +5973,6 @@ only
 ons
 ontario
 onto
-ooo
 oops
 open
 opened
@@ -7449,7 +7442,6 @@ royalty
 rpg
 rpm
 rrp
-rss
 rubber
 ruby
 rug
@@ -9550,7 +9542,6 @@ written
 wrong
 wrote
 wto
-www
 wyoming
 xanax
 xbox
@@ -9558,7 +9549,6 @@ xerox
 xhtml
 xml
 xnxx
-xxx
 ya
 yacht
 yahoo
