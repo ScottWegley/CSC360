@@ -17,6 +17,47 @@ public class FrequencyAnalyst {
             'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
     public static ArrayList<ArrayList<Character>> alphabets = new ArrayList<>();
     public static void main(String[] args) throws Exception {
+    private static void generateAlphabets(char[] receive, int alphaIndex, ArrayList<Character> used, char... validChars)
+            throws Exception {
+        if (alphaIndex == BASE_ALPHABET.length) {
+            ArrayList<Character> temp = new ArrayList<>();
+            for (int i = 0; i < receive.length; i++) {
+                temp.add(receive[i]);
+            }
+            alphabets.add(temp);
+            return;
+        }
+        boolean valid = false;
+        for (char c : validChars) {
+            if (c == BASE_ALPHABET[alphaIndex]) {
+                valid = true;
+            }
+        }
+        if (!valid) {
+            receive[alphaIndex] = '?';
+            alphaIndex++;
+            generateAlphabets(receive, alphaIndex, used, validChars);
+        } else {
+            ArrayList<Character> toTraverse = new ArrayList<>();
+            for (char q : currFreq.get(BASE_ALPHABET[alphaIndex])) {
+                if (used.contains(q)) {
+                    continue;
+                }
+                toTraverse.add(q);
+
+            }
+            for (Character y : toTraverse) {
+                receive[alphaIndex] = y;
+                alphaIndex++;
+                used.add(y);
+                generateAlphabets(receive, alphaIndex--, used, validChars);
+                used.remove(y);
+            }
+
+        }
+        return;
+    }
+
     public static void genOutput() throws Exception {
         File file = new File("C:\\Code\\CSC360\\Cryptanalyst\\dictionary.txt");
         Scanner scanner = new Scanner(file);
