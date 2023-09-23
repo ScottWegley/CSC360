@@ -18,6 +18,19 @@ public class FrequencyAnalyst {
     public static ArrayList<ArrayList<Character>> alphabets = new ArrayList<>();
     public static void main(String[] args) throws Exception {
 
+    public static void applyFrequencyTest(String encoded, double threshold, int alphaThreshold) throws Exception {
+        if (currFreq == null) {
+            loadFrequencyTest();
+        }
+        String s = "";
+        for (Character c : currFreq.keySet()) {
+            if ((int) QUOTE_TWO.chars().filter(ch -> ch == c).count() >= alphaThreshold) {
+                s = s + c;
+            }
+        }
+        applyFrequencyTest(encoded, threshold, s.toCharArray());
+    }
+
     /**
      * Applies the current frequency test with limitations specified in the
      * parameters.
