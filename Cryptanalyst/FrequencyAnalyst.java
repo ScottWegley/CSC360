@@ -1,4 +1,12 @@
 package Cryptanalyst;
+
+import java.io.File;
+import java.io.FileWriter;
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+
 public class FrequencyAnalyst {
 
     static BigInteger TWENTY_SIX_FACTORIAL = new BigInteger("403291461126605635584000000");
