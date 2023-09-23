@@ -1,32 +1,66 @@
 package Cryptanalyst;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
 
-class Cryptanalyst {
+class StandardCeasar {
 
     /** The standard 26 letter english alphabet. */
-    public static final String[] BASE_ALPHABET = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N",
-            "O",
-            "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+    public static final char[] BASE_ALPHABET = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
+            'O',
+            'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
 
-    public static String[][] ALPHABET_BUCKETS = null;
+    /** The standard 26 letter alphabet sorted by frequency */
+    public static ArrayList<Character> FREQUENCY_TABLE = new ArrayList<>() {
+        {
+            add('e');
+            add('t');
+            add('a');
+            add('o');
+            add('i');
+            add('n');
+            add('s');
+            add('h');
+            add('r');
+            add('d');
+            add('l');
+            add('u');
+            add('c');
+            add('m');
+            add('f');
+            add('w');
+            add('y');
+            add('g');
+            add('p');
+            add('b');
+            add('v');
+            add('k');
+            add('q');
+            add('j');
+            add('x');
+            add('z');
+        }
+    };
 
     public static final String QUOTE_ONE = "EUA IGT LUUR GRR ZNK VKUVRK YUSK UL ZNK ZOSK GTJ YUSK UL ZNK VKUVRK GRR ZNK ZOSK HAZ EUA IGTTUZ LUUR GRR ZNK VKUVRK GRR UL ZNK ZOSK";
     public static final String QUOTE_TWO = "B SMVE M HPEMJ RSMR LKE HMY RSBQ KMRBLK WBGG PBQE UN GBVE LUR RSE RPUE JEMKBKC LI BRQ TPEEH WE SLGH RSEQE RPURSQ RL AE QEGI EVBHEKR RSMR MGG JEK MPE TPEMREH EOUMG";
     public static final String QUOTE_THREE = "KMS FW IO BLQQWX KILYJZKMF KFA MWV XUKV OWHY ZWHMVYO ZKM SW BWY OWH KFA XUKV OWH ZKM SW BWY OWHY ZWHMVYO";
     public static final String QUOTE_FOUR = "DQGJRGVDLGOHWWKHUHEHOLJKWDQGWKHUHZDVOLJKW";
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         StandardCeasarSolution[] ONE_SOLS = bruteforceCeaser(QUOTE_ONE, .3);
         for (StandardCeasarSolution s : ONE_SOLS) {
-            System.out.println("================================================");
-            for (int i = 0; i < shiftedAlphabet(s.getShift()).length; i++) {
-                System.out.print(shiftedAlphabet(s.getShift())[i]);
-            }
-            System.out.print(" || Shifted by " + s.getShift());
-            System.out.print('\n');
-            System.out.println("Accuracy: " + (s.getAccuracy() * 100) + "%");
-            System.out.println(s.getText());
+        System.out.println("================================================");
+        for (int i = 0; i < shiftedAlphabet(s.getShift()).length; i++) {
+        System.out.print(shiftedAlphabet(s.getShift())[i]);
+        }
+        System.out.print(" || Shifted by " + s.getShift());
+        System.out.print('\n');
+        System.out.println("Accuracy: " + (s.getAccuracy() * 100) + "%");
+        System.out.println(s.getText());
         }
     }
 
@@ -51,7 +85,7 @@ class Cryptanalyst {
         }
         ArrayList<StandardCeasarSolution> sols = new ArrayList<>();
         for (int i = 0; i < BASE_ALPHABET.length; i++) {
-            String[] sAlpha = shiftedAlphabet(i);
+            char[] sAlpha = shiftedAlphabet(i);
             String decoded = "";
             for (int j = 0; j < cipherText.length(); j++) {
                 if (cipherText.charAt(j) == ' ') {
@@ -72,11 +106,6 @@ class Cryptanalyst {
         return out;
     }
 
-    public static PotentialSolution[] bruteforceSubstitution(String cipherText, double sThreshold) {
-
-        return new PotentialSolution[] {};
-    }
-
     /**
      * Returns an an array with the characters from the standard english alphabet.
      * 
@@ -87,8 +116,8 @@ class Cryptanalyst {
      *              and shifting by more than the length of the alphabet.
      * @return An alphabet with each letter shifted by the specified amount.
      */
-    public static String[] shiftedAlphabet(int shift) {
-        String[] sAlphabet = new String[BASE_ALPHABET.length];
+    public static char[] shiftedAlphabet(int shift) {
+        char[] sAlphabet = new char[BASE_ALPHABET.length];
         while (shift < 0) {
             shift += 26;
         }
