@@ -17,6 +17,66 @@ public class FrequencyAnalyst {
             'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
     public static ArrayList<ArrayList<Character>> alphabets = new ArrayList<>();
     public static void main(String[] args) throws Exception {
+
+    /**
+     * Applies the current frequency test with limitations specified in the
+     * parameters.
+     * 
+     * @param encoded   The encoded text we are applying our frequency test to.
+     * @param threshold The percentage of "real words" that must be present to
+     *                  consider
+     *                  the result.
+     * @param c         An array of characters to use in the thresholding.
+     *                  Characters not
+     *                  in this array will not be solved for.
+     * @throws Exception
+     */
+    public static void applyFrequencyTest(String encoded, double threshold, char... c) throws Exception {
+        if (currFreq == null) {
+            loadFrequencyTest();
+        }
+        char[] template = new char[26];
+        generateAlphabets(template, 0, new ArrayList<>(), c);
+        double highestAccuracy = 0;
+        for (int i = 0; i < alphabets.size(); i++) {
+            // Unccomment the below lines if you'd like
+            // to print the alphabets out.
+            // System.out.print((i + 1) + ": ");
+            // for (char q : alphabets.get(i)) {
+            // System.out.print(q);
+            // }
+            // System.out.print('\n');
+            // Above is only for printing alphabets.
+            String decoded = "";
+            for (int j = 0; j < encoded.length(); j++) {
+                if (encoded.charAt(j) == ' ') {
+                    decoded = decoded + ' ';
+                    continue;
+                }
+                decoded = decoded + alphabets.get(i).get(encoded.charAt(j) - 65);
+            }
+            ArbitrarySubSolution _s = new ArbitrarySubSolution(decoded, alphabets.get(i));
+            if (_s.getAccuracy() >= threshold) {
+                if (_s.getAccuracy() > highestAccuracy) {
+                    highestAccuracy = _s.getAccuracy();
+                }
+                System.out.println("Testing Alphabet #" + ++i + " || Accuracy: " + _s.getAccuracy() * 100 + "%");
+                System.out.print("===");
+                for (char d : BASE_ALPHABET) {
+                    System.out.print(d);
+                }
+                System.out.print("===\n");
+                System.out.print("===");
+                for (char d : _s.getAlphabet()) {
+                    System.out.print(d);
+                }
+                System.out.print("===\n");
+                System.out.println(_s.getText());
+            }
+        }
+        System.out.println("Highest Accuracy: " + highestAccuracy * 100 + "%");
+    }
+
     private static void generateAlphabets(char[] receive, int alphaIndex, ArrayList<Character> used, char... validChars)
             throws Exception {
         if (alphaIndex == BASE_ALPHABET.length) {
