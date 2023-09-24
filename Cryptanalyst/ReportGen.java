@@ -38,7 +38,7 @@ public class ReportGen {
         scanner.close();
         // LOAD DICTIONARY
         HashMap<Integer, Integer> dupeMap = new HashMap<>();
-        String chars = "XUKV";
+        String chars = "SW";
         // GEN DUPE MAP
         for (int i = 0; i < chars.length() - 1; i++) {
             for (int j = i + 1; j < chars.length(); j++) {
