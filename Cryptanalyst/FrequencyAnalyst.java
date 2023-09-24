@@ -62,6 +62,13 @@ public class FrequencyAnalyst {
         char[] template = new char[26];
         generateAlphabets(template, 0, new ArrayList<>(), c);
         double highestAccuracy = 0;
+        HashMap<Character, HashMap<Character, ArrayList<Integer>>> internalAnalysis = new HashMap<>();
+        for (char d : c) {
+            internalAnalysis.put(d, new HashMap<>());
+            for (char e : currFreq.get(d)) {
+                internalAnalysis.get(d).put(e, new ArrayList<>());
+            }
+        }
         for (int i = 0; i < alphabets.size(); i++) {
             String decoded = "";
             for (int j = 0; j < encoded.length(); j++) {
