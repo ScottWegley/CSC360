@@ -18,9 +18,6 @@ public class FrequencyAnalyst {
             'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
     public static ArrayList<ArrayList<Character>> alphabets = new ArrayList<>();
 
-    // public static char[] test = { 'O','W','H','Y','M','V','Z' };
-    public static char[] test = { 'B','L','Q','W','X','K','I','Y','J','Z','K','M','F','S'};
-
     public static void main(String[] args) throws Exception {
         try {
             // printFreqTestReport(2);
