@@ -32,13 +32,25 @@ public class ReportGen {
         ArrayList<String> dictionary = new ArrayList<>();
         File file = new File("C:\\Code\\CSC360\\Cryptanalyst\\dictionary.txt");
         Scanner scanner = new Scanner(file);
-        while(scanner.hasNextLine()){
+        while (scanner.hasNextLine()) {
             dictionary.add(scanner.nextLine());
         }
         scanner.close();
         // LOAD DICTIONARY
-        HashMap<Integer,Integer> dupeMap = new HashMap<>();
-        String chars = "BLQQWX";
+        HashMap<Integer, Integer> dupeMap = new HashMap<>();
+        String chars = "XUKV";
+        // GEN DUPE MAP
+        for (int i = 0; i < chars.length() - 1; i++) {
+            for (int j = i + 1; j < chars.length(); j++) {
+                if (chars.charAt(i) == chars.charAt(j)) {
+                    dupeMap.put(i, j);
+                }
+            }
+        }
+        for (Integer yo : dupeMap.keySet()) {
+            System.out.println("Must match " + yo + " to " + dupeMap.get(yo));
+        }
+        // GEN DUPE MAP
         ArrayList<String> reports = new ArrayList<>();
         for (int CHAR_TO_REPORT = 0; CHAR_TO_REPORT < chars.length(); CHAR_TO_REPORT++) {
             ArrayList<Character> temp = new ArrayList<>();
@@ -60,9 +72,16 @@ public class ReportGen {
 
                         if (in.chars().filter(c -> c == in.charAt(_i)).count() != chars.chars()
                                 .filter(c -> c == chars.charAt(_i)).count()) {
+                            skip = true; // For every letter if the word we're checking, the count should match the
+                                         // count of the corresponding letter count in our cipher word
+                        }
+                    }
+                    for (Integer FIRST_INDEX : dupeMap.keySet()) {
+                        if(in.charAt(FIRST_INDEX) != in.charAt(dupeMap.get(FIRST_INDEX))){
                             skip = true;
                         }
                     }
+
                     if (skip) {
                         continue;
                     }
