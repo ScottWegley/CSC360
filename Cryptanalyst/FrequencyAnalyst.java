@@ -91,6 +91,13 @@ public class FrequencyAnalyst {
             }
         }
         System.out.println("Highest Accuracy: " + highestAccuracy * 100 + "%");
+        System.out.println("===Frequency Report===");
+        for (char d : internalAnalysis.keySet()) {
+            System.out.println(d + " Replacements");
+            for (char e : internalAnalysis.get(d).keySet()) {
+                System.out.println(e + ": " + internalAnalysis.get(d).get(e).size());
+            }
+        }
     }
 
     private static void generateAlphabets(char[] receive, int alphaIndex, ArrayList<Character> used, char... validChars)
