@@ -46,20 +46,18 @@ class StandardCeasar {
     };
 
     public static final String QUOTE_ONE = "EUA IGT LUUR GRR ZNK VKUVRK YUSK UL ZNK ZOSK GTJ YUSK UL ZNK VKUVRK GRR ZNK ZOSK HAZ EUA IGTTUZ LUUR GRR ZNK VKUVRK GRR UL ZNK ZOSK";
-    public static final String QUOTE_THREE = "KMS FW IO BLQQWX KILYJZKMF KFA MWV XUKV OWHY ZWHMVYO ZKM SW BWY OWH KFA XUKV OWH ZKM SW BWY OWHY ZWHMVYO";
-    public static final String QUOTE_FOUR = "DQGJRGVDLGOHWWKHUHEHOLJKWDQGWKHUHZDVOLJKW";
 
     public static void main(String[] args) throws Exception {
         StandardCeasarSolution[] ONE_SOLS = bruteforceCeaser(QUOTE_ONE, .3);
         for (StandardCeasarSolution s : ONE_SOLS) {
-        System.out.println("================================================");
-        for (int i = 0; i < shiftedAlphabet(s.getShift()).length; i++) {
-        System.out.print(shiftedAlphabet(s.getShift())[i]);
-        }
-        System.out.print(" || Shifted by " + s.getShift());
-        System.out.print('\n');
-        System.out.println("Accuracy: " + (s.getAccuracy() * 100) + "%");
-        System.out.println(s.getText());
+            System.out.println("================================================");
+            for (int i = 0; i < shiftedAlphabet(s.getShift()).length; i++) {
+                System.out.print(shiftedAlphabet(s.getShift())[i]);
+            }
+            System.out.print(" || Shifted by " + s.getShift());
+            System.out.print('\n');
+            System.out.println("Accuracy: " + (s.getAccuracy() * 100) + "%");
+            System.out.println(s.getText());
         }
     }
 
