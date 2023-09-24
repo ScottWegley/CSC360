@@ -18,12 +18,13 @@ public class FrequencyAnalyst {
             'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
     public static ArrayList<ArrayList<Character>> alphabets = new ArrayList<>();
 
-    public static char[] test = { 'F', 'W', 'S' };
+    // public static char[] test = { 'O','W','H','Y','M','V','Z' };
+    public static char[] test = { 'B','L','Q','W','X','K','I','Y','J','Z','K','M','F','S'};
 
     public static void main(String[] args) throws Exception {
         try {
-            // printFreqTestReport(test);
-            applyFrequencyTest(QUOTE_THREE, 0.1, test);
+            // printFreqTestReport(2);
+            applyFrequencyTest(QUOTE_THREE, 0.6, 0);
             // genOutput();
         } catch (Exception e) {
             e.printStackTrace();
@@ -104,9 +105,11 @@ public class FrequencyAnalyst {
         System.out.println("===Frequency Report===");
         for (char d : internalAnalysis.keySet()) {
             System.out.println(d + " Replacements");
+            System.out.print("|| ");
             for (char e : internalAnalysis.get(d).keySet()) {
-                System.out.println(e + ": " + internalAnalysis.get(d).get(e));
+                System.out.print(e + ": " + internalAnalysis.get(d).get(e) + " || ");
             }
+            System.out.print('\n');
         }
     }
 
@@ -149,36 +152,6 @@ public class FrequencyAnalyst {
 
         }
         return;
-    }
-
-    public static void genOutput() throws Exception {
-        File file = new File("C:\\Code\\CSC360\\Cryptanalyst\\dictionary.txt");
-        Scanner scanner = new Scanner(file);
-        File out = new File("C:\\Code\\CSC360\\Cryptanalyst\\outputs\\CUSTOM.txt");
-        FileWriter writer = new FileWriter(out);
-        ArrayList<Character> temp = new ArrayList<>();
-        String TESTONE = "ADEFHIKMNORSTV";
-        String TESTTWO = "ADEIKNORSTV";
-        while (scanner.hasNextLine()) {
-            String in = scanner.nextLine();
-            if (temp.size() == 26) {
-                break;
-            }
-            if (in.length() == 3 && TESTONE.indexOf(in.toUpperCase().charAt(0)) != -1
-                    && TESTTWO.indexOf(in.toUpperCase().charAt(1)) != -1) {
-                if (!temp.contains(in.charAt(2))) {
-                    temp.add(in.charAt(2));
-                    System.out.println(in);
-                }
-            }
-        }
-
-        for (Character t : temp) {
-            writer.write(t + "\n");
-        }
-
-        scanner.close();
-        writer.close();
     }
 
     /**

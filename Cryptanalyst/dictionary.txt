@@ -1,7 +1,6 @@
 a
 aaron
 abandoned
-abc
 aberdeen
 abilities
 ability
@@ -25,7 +24,6 @@ abuse
 academic
 academics
 academy
-acc
 accent
 accept
 acceptable
@@ -1418,7 +1416,6 @@ certification
 certified
 cest
 cet
-cfr
 cgi
 chad
 chain
@@ -3603,7 +3600,6 @@ fusion
 future
 futures
 fuzzy
-fwd
 gabriel
 gadgets
 gage
@@ -3842,9 +3838,6 @@ growing
 grown
 grows
 growth
-gsm
-gst
-gtk
 guam
 guarantee
 guaranteed
@@ -4186,7 +4179,6 @@ huntington
 hurricane
 hurt
 husband
-hwy
 hybrid
 hydraulic
 hydrocodone
@@ -4768,7 +4760,6 @@ knowledge
 knowledgestorm
 known
 knows
-ko
 kodak
 kong
 korea
@@ -5032,7 +5023,6 @@ liz
 llc
 lloyd
 llp
-lo
 load
 loaded
 loading
@@ -5414,9 +5404,6 @@ metropolitan
 mexican
 mexico
 meyer
-mfg
-mhz
-mi
 mia
 miami
 mic
@@ -5512,7 +5499,6 @@ mixing
 mixture
 mlb
 mls
-mo
 mobile
 mobiles
 mobility
@@ -5669,7 +5655,6 @@ mysql
 mysterious
 mystery
 myth
-na
 nail
 nails
 naked
@@ -7824,7 +7809,6 @@ shows
 showtimes
 shut
 shuttle
-si
 sic
 sick
 side
@@ -8985,7 +8969,6 @@ ultimate
 ultimately
 ultra
 ultram
-um
 una
 unable
 unauthorized
@@ -9548,7 +9531,6 @@ xbox
 xerox
 xhtml
 xml
-xnxx
 ya
 yacht
 yahoo
@@ -9558,7 +9540,6 @@ yang
 yard
 yards
 yarn
-ye
 yea
 yeah
 year
