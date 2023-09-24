@@ -18,12 +18,13 @@ public class FrequencyAnalyst {
             'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
     public static ArrayList<ArrayList<Character>> alphabets = new ArrayList<>();
 
-    private static char[] testArray = { 'B', 'Q', 'M', 'R', 'S', 'G', 'W', 'L', 'A', 'E' };
+    public static char[] test = { 'F', 'W', 'S' };
 
     public static void main(String[] args) throws Exception {
         try {
-            // printFreqTestReport(3);
-            applyFrequencyTest(QUOTE_TWO, 0.90, 1);
+            // printFreqTestReport(test);
+            applyFrequencyTest(QUOTE_THREE, 0.1, test);
+            // genOutput();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -62,11 +63,11 @@ public class FrequencyAnalyst {
         char[] template = new char[26];
         generateAlphabets(template, 0, new ArrayList<>(), c);
         double highestAccuracy = 0;
-        HashMap<Character, HashMap<Character, ArrayList<Integer>>> internalAnalysis = new HashMap<>();
+        HashMap<Character, HashMap<Character, Integer>> internalAnalysis = new HashMap<>();
         for (char d : c) {
             internalAnalysis.put(d, new HashMap<>());
             for (char e : currFreq.get(d)) {
-                internalAnalysis.get(d).put(e, new ArrayList<>());
+                internalAnalysis.get(d).put(e, 0);
             }
         }
         for (int i = 0; i < alphabets.size(); i++) {
@@ -84,16 +85,18 @@ public class FrequencyAnalyst {
                     highestAccuracy = _s.getAccuracy();
                 }
                 System.out.println("Testing Alphabet #" + ++i + " || Accuracy: " + _s.getAccuracy() * 100 + "%");
-                System.out.print("===");
-                for (char d : BASE_ALPHABET) {
-                    System.out.print(d);
+                String p1 = "===";
+                String p2 = "===";
+                for (int j = 0; j < BASE_ALPHABET.length; j++) {
+                    p1 = p1 + BASE_ALPHABET[j];
+                    p2 = p2 + _s.getAlphabet().get(j);
+                    if (_s.getAlphabet().get(j) == '?') {
+                        continue;
+                    }
+                    internalAnalysis.get(BASE_ALPHABET[j]).put(_s.getAlphabet().get(j),
+                            internalAnalysis.get(BASE_ALPHABET[j]).get(_s.getAlphabet().get(j)) + 1);
                 }
-                System.out.print("===\n");
-                System.out.print("===");
-                for (char d : _s.getAlphabet()) {
-                    System.out.print(d);
-                }
-                System.out.print("===\n");
+                System.out.print(p1 + "===\n" + p2 + "===\n");
                 System.out.println(_s.getText());
             }
         }
@@ -102,7 +105,7 @@ public class FrequencyAnalyst {
         for (char d : internalAnalysis.keySet()) {
             System.out.println(d + " Replacements");
             for (char e : internalAnalysis.get(d).keySet()) {
-                System.out.println(e + ": " + internalAnalysis.get(d).get(e).size());
+                System.out.println(e + ": " + internalAnalysis.get(d).get(e));
             }
         }
     }
@@ -151,21 +154,27 @@ public class FrequencyAnalyst {
     public static void genOutput() throws Exception {
         File file = new File("C:\\Code\\CSC360\\Cryptanalyst\\dictionary.txt");
         Scanner scanner = new Scanner(file);
-        File out = new File("C:\\Code\\CSC360\\Cryptanalyst\\outputs\\threeLetterAt1.txt");
+        File out = new File("C:\\Code\\CSC360\\Cryptanalyst\\outputs\\CUSTOM.txt");
         FileWriter writer = new FileWriter(out);
         ArrayList<Character> temp = new ArrayList<>();
+        String TESTONE = "ADEFHIKMNORSTV";
+        String TESTTWO = "ADEIKNORSTV";
         while (scanner.hasNextLine()) {
             String in = scanner.nextLine();
-            if (in.length() == 3) {
-                System.out.println(in);
-                if (!temp.contains(in.charAt(1))) {
-                    temp.add(in.charAt(1));
+            if (temp.size() == 26) {
+                break;
+            }
+            if (in.length() == 3 && TESTONE.indexOf(in.toUpperCase().charAt(0)) != -1
+                    && TESTTWO.indexOf(in.toUpperCase().charAt(1)) != -1) {
+                if (!temp.contains(in.charAt(2))) {
+                    temp.add(in.charAt(2));
+                    System.out.println(in);
                 }
             }
         }
 
         for (Character t : temp) {
-            writer.write(t + "  \n");
+            writer.write(t + "\n");
         }
 
         scanner.close();
@@ -177,7 +186,7 @@ public class FrequencyAnalyst {
      */
     private static void loadFrequencyTest() throws Exception {
         currFreq = new HashMap<>();
-        Scanner scanner = new Scanner(new File("C:\\Code\\CSC360\\Cryptanalyst\\FreqTestQ2.txt"));
+        Scanner scanner = new Scanner(new File("C:\\Code\\CSC360\\Cryptanalyst\\FreqTestQ3.txt"));
         while (scanner.hasNextLine()) {
             String in = scanner.nextLine();
             char header = in.charAt(1);
@@ -220,7 +229,7 @@ public class FrequencyAnalyst {
             System.out.print(" || " + currFreq.get(c).size() + "\n");
         }
         System.out.println("Current Worst Permutations: " + perms.toString());
-        System.out.println("Worst Case Possible: " +
+        System.out.println("Worst Case Possible:        " +
                 TWENTY_SIX_FACTORIAL.toString());
 
     }
