@@ -28,16 +28,21 @@ public class ReportGen {
         }
         freqScan.close();
         // LOAD FREQUENCY TABLE
+        // LOAD DICTIONARY
+        ArrayList<String> dictionary = new ArrayList<>();
+        File file = new File("C:\\Code\\CSC360\\Cryptanalyst\\dictionary.txt");
+        Scanner scanner = new Scanner(file);
+        while(scanner.hasNextLine()){
+            dictionary.add(scanner.nextLine());
+        }
+        scanner.close();
+        // LOAD DICTIONARY
         HashMap<Integer,Integer> dupeMap = new HashMap<>();
         String chars = "BLQQWX";
         ArrayList<String> reports = new ArrayList<>();
-        Scanner scanner = null;
         for (int CHAR_TO_REPORT = 0; CHAR_TO_REPORT < chars.length(); CHAR_TO_REPORT++) {
-            File file = new File("C:\\Code\\CSC360\\Cryptanalyst\\dictionary.txt");
-            scanner = new Scanner(file);
             ArrayList<Character> temp = new ArrayList<>();
-            while (scanner.hasNextLine()) {
-                String in = scanner.nextLine();
+            for (String in : dictionary) {
                 if (temp.size() == 26) {
                     break;
                 }
@@ -66,7 +71,6 @@ public class ReportGen {
                         System.out.println(in);
                     }
                 }
-
             }
             Collections.sort(temp);
             String report = chars.charAt(CHAR_TO_REPORT) + ": ";
