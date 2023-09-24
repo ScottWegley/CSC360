@@ -63,14 +63,6 @@ public class FrequencyAnalyst {
         generateAlphabets(template, 0, new ArrayList<>(), c);
         double highestAccuracy = 0;
         for (int i = 0; i < alphabets.size(); i++) {
-            // Unccomment the below lines if you'd like
-            // to print the alphabets out.
-            // System.out.print((i + 1) + ": ");
-            // for (char q : alphabets.get(i)) {
-            // System.out.print(q);
-            // }
-            // System.out.print('\n');
-            // Above is only for printing alphabets.
             String decoded = "";
             for (int j = 0; j < encoded.length(); j++) {
                 if (encoded.charAt(j) == ' ') {
