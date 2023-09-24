@@ -8,7 +8,7 @@ public class ColumnarTransposition {
 
     public static void bruteForce(){
         HashMap<Integer,ArrayList<String>> outputStorage = new HashMap<>();
-        for (int i = 2; i <= 96; i++) {
+        for (int i = 1; i <= 96; i++) {
             if(96 % i != 0){
                 continue;
             }
@@ -16,7 +16,7 @@ public class ColumnarTransposition {
                 if(!outputStorage.keySet().contains(i)){
                     outputStorage.put(i,new ArrayList<>());
                 }
-                int readPosition = 0;
+                int readPosition = counter;
                 String row = "";
                 while(readPosition < QUOTE_FIVE.length()){
                     row = row + QUOTE_FIVE.charAt(readPosition);
