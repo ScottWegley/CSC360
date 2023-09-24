@@ -18,11 +18,11 @@ public class FrequencyAnalyst {
             'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
     public static ArrayList<ArrayList<Character>> alphabets = new ArrayList<>();
 
-    public static char[] test = {'B','L','Q','W','X'};
+    public static char[] test = "XUKVBLQW".toCharArray();
     public static void main(String[] args) throws Exception {
         try {
             // printFreqTestReport(test);
-            applyFrequencyTest(QUOTE_THREE, 0.0001, test);
+            applyFrequencyTest(QUOTE_THREE, 0, 0);
             // genOutput();
         } catch (Exception e) {
             e.printStackTrace();
@@ -97,6 +97,7 @@ public class FrequencyAnalyst {
                 }
                 System.out.print(p1 + "===\n" + p2 + "===\n");
                 System.out.println(_s.getText());
+                System.out.println("================================");
             }
         }
         System.out.println("Highest Accuracy: " + highestAccuracy * 100 + "%");
