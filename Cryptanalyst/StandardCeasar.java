@@ -1,10 +1,6 @@
 package Cryptanalyst;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
 
 class StandardCeasar {
 
@@ -12,38 +8,6 @@ class StandardCeasar {
     public static final char[] BASE_ALPHABET = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N',
             'O',
             'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z' };
-
-    /** The standard 26 letter alphabet sorted by frequency */
-    public static ArrayList<Character> FREQUENCY_TABLE = new ArrayList<>() {
-        {
-            add('e');
-            add('t');
-            add('a');
-            add('o');
-            add('i');
-            add('n');
-            add('s');
-            add('h');
-            add('r');
-            add('d');
-            add('l');
-            add('u');
-            add('c');
-            add('m');
-            add('f');
-            add('w');
-            add('y');
-            add('g');
-            add('p');
-            add('b');
-            add('v');
-            add('k');
-            add('q');
-            add('j');
-            add('x');
-            add('z');
-        }
-    };
 
     public static final String QUOTE_ONE = "EUA IGT LUUR GRR ZNK VKUVRK YUSK UL ZNK ZOSK GTJ YUSK UL ZNK VKUVRK GRR ZNK ZOSK HAZ EUA IGTTUZ LUUR GRR ZNK VKUVRK GRR UL ZNK ZOSK";
 
