@@ -1,7 +1,6 @@
 package Cryptanalyst;
 
 import java.io.File;
-import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -38,7 +37,7 @@ public class ReportGen {
         scanner.close();
         // LOAD DICTIONARY
         HashMap<Integer, Integer> dupeMap = new HashMap<>();
-        String chars = "SW";
+        String chars = "ZWHMVYO";
         // GEN DUPE MAP
         for (int i = 0; i < chars.length() - 1; i++) {
             for (int j = i + 1; j < chars.length(); j++) {
