@@ -13,6 +13,21 @@ public class BitOperator {
         return result;
     }
 
+    public static String num2binary(long a, int bits){
+        String out = Long.toBinaryString(a);
+        while(out.length() < bits){
+            out = "0" + out;
+        }
+        return out;
+    }
+    public static String num2binary(int a, int bits){
+        String out = Integer.toBinaryString(a);
+        while(out.length() < bits){
+            out = "0" + out;
+        }
+        return out;
+    }
+
     public static long urShift(long a, int bits) {
         for (int i = 0; i < bits; i++) {
             a = a >>> 1 & 0x7FFFFFFFFFFFFFFFL;
@@ -42,18 +57,19 @@ public class BitOperator {
     }
 
     public static void main(String[] args) {
-        /* byte b = 0x7F;
+        byte b = 0x7F;
         short s = 0x7FFF;
         int i = 0x7FFFFFFF;
         long t = 0x7FFFFFFFFFFFFFFFL;
         System.out.println(int2binary(b, 8));
         System.out.println(int2binary(urShift(b, 3), 8));
-        System.out.println(int2binary(urShift(s, 3), 16));
         System.out.println(int2binary(s, 16));
-        System.out.println(int2binary(urShift(i, 3), 32));
+        System.out.println(int2binary(urShift(s, 3), 16));
         System.out.println(int2binary(i, 32));
+        System.out.println(int2binary(urShift(i, 3), 32));
+        System.out.println(int2binary(t, 64));
         System.out.println(int2binary(urShift(t, 3), 64));
-        System.out.println(int2binary(t, 64)); */
-        System.out.println(int2binary((byte)(-100),8));
+
+        // System.out.println(int2binary((byte)(-100),8));
     }
 }
