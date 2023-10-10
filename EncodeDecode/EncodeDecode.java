@@ -3,11 +3,11 @@ import Libraries.BitOperator;
 public class EncodeDecode {
     static short encode12(short plain, int round, short key9) {
         byte key = keyextractor(key9, round);
-        byte left = (byte) (0x3F & (BitOperator.urShift(plain, 6)));
+        byte left = (byte) (0x3F & (plain >>> 6));
         byte right = (byte) (0x3F & plain);
         byte fe = feistel(right, key);
         byte temp = (byte) (fe ^ left);
-        short out = (short) (((short) (right) << 6) | (short) (temp));
+        short out = (short) (((right) << 6) | (temp));
         return out;
     }
 
@@ -15,7 +15,7 @@ public class EncodeDecode {
         byte key = keyextractor(key9, round);
         cipher = (short) ((((cipher >>> 6) & 0x003F) | ((cipher << 6) & 0xFC00)) & 0x0FFF);
         byte right = (byte) (cipher & 0x3F);
-        byte left = (byte) ((BitOperator.urShift(cipher, 6)) & 0x3F);
+        byte left = (byte) ((cipher >>> 6) & 0x3F);
         byte fe = feistel(right, key);
         byte temp = (byte) (fe ^ left);
         short out = (short) (((short) (right) << 6) | (short) (temp));
