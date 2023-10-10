@@ -13,14 +13,20 @@ public class EncodeDecode {
 
     static short decode12(short cipher, int round, short key9) {
         byte key = keyextractor(key9, round);
-        cipher = (short) ((((cipher >>> 6) & 0x003F) | ((cipher << 6) & 0xFC00)) & 0x0FFF);
+        cipher = lrswap(cipher);
         byte right = (byte) (cipher & 0x3F);
         byte left = (byte) ((cipher >>> 6) & 0x3F);
         byte fe = feistel(right, key);
         byte temp = (byte) (fe ^ left);
         short out = (short) (((short) (right) << 6) | (short) (temp));
-        out = (short) ((((out >>> 6) & 0x003F) | ((cipher << 6) & 0xFC00)) & 0x0FFF);
-        return cipher;
+        out = lrswap(out);
+        return out;
+    }
+
+    static short lrswap(short _in){
+        short swap = 0;
+        swap = (short) (((_in & 0x003F) << 6 | ((_in & 0x0FC0) >> 6)));
+        return swap;
     }
 
     public static byte feistel(byte R, byte K) {
@@ -30,7 +36,7 @@ public class EncodeDecode {
         R = left(R);
         R = S1(R);
         K = S2(K);
-        R = (byte) (R | (K << 3));
+        R = (byte) (R << 3 | (K & 0b111));
         return R;
     }
 
