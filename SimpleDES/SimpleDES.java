@@ -1,60 +1,82 @@
-package Libraries;
+package SimpleDES;
 
-public class BitOperator {
-    public static String int2binary(long a, int bits) {
-        long q = a;
-        long r = 0;
-        String result = "";
-        for (int i = 0; i < bits; i++) {
-            r = q & 0x01;
-            result = r + result;
-            q = urShift(q, 1);
-        }
-        return result;
+import Libraries.BitOperator;
+
+class SimpleDES {
+
+    public static final int ROUNDS = 3;
+
+    public static void main(String[] args) {
+        
     }
 
-    public static String num2binary(long a, int bits) {
-        String out = Long.toBinaryString(a);
-        while (out.length() < bits) {
-            out = "0" + out;
+    byte[] encrypt(String pText, short key) {
+        short[] arr = preprocess(pText);
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < ROUNDS; j++) {
+                arr[i] = encode12(arr[i], j, key);
+            }
         }
+    }
+
+    String decrypt(byte[] cipherText, short key) {
+
+    }
+
+    static short encode12(short plain, int round, short key9) {
+        byte key = keyextractor(key9, round);
+        byte left = (byte) (0x3F & (plain >>> 6));
+        byte right = (byte) (0x3F & plain);
+        byte fe = feistel(right, key);
+        byte temp = (byte) (fe ^ left);
+        short out = (short) (((right) << 6) | (temp));
         return out;
     }
 
-    public static String num2binary(int a, int bits) {
-        String out = Integer.toBinaryString(a);
-        while (out.length() < bits) {
-            out = "0" + out;
-        }
+    static short decode12(short cipher, int round, short key9) {
+        byte key = keyextractor(key9, round);
+        cipher = lrswap(cipher);
+        byte right = (byte) (cipher & 0x3F);
+        byte left = (byte) ((cipher >>> 6) & 0x3F);
+        byte fe = feistel(right, key);
+        byte temp = (byte) (fe ^ left);
+        short out = (short) (((short) (right) << 6) | (short) (temp));
+        out = lrswap(out);
         return out;
     }
 
-    public static long urShift(long a, int bits) {
-        for (int i = 0; i < bits; i++) {
-            a = a >>> 1 & 0x7FFFFFFFFFFFFFFFL;
+    public static short[] preprocess(String s) {
+        int _l = s.getBytes().length;
+        while (_l % 3 != 0) {
+            _l++;
         }
-        return a;
+        byte[] input = new byte[_l];
+        int i = 0;
+        while (i < s.getBytes().length) {
+            input[i] = s.getBytes()[i++];
+        }
+        while (i < _l) {
+            input[i++] = 0b0;
+        }
+
+        short[] output = new short[_l / 3 * 2];
+        int shortIndex = 0;
+        for (int j = 0; j < _l / 3; j++) {
+            output[shortIndex++] = (short) ((short) (((short) input[j]) << 4) | (short) ((input[j + 1] >>> 4) & 0x0f));
+            output[shortIndex++] = (short) (((short) (input[j + 1]) << 8) | input[j + 2]);
+        }
+        return output;
     }
 
-    public static int urShift(int a, int bits) {
-        for (int i = 0; i < bits; i++) {
-            a = a >>> 1 & 0x7FFFFFFF;
+    public static byte[] postprocess(short[] s) {
+        int byteIndex = 0;
+        byte[] output = new byte[s.length / 2 * 3];
+        for (int i = 0; i < s.length / 2; i++) {
+            output[byteIndex++] = (byte) ((s[i] >>> 4) & 0xFF);
+            output[byteIndex++] = (byte) (((byte) (s[i] & 0x0F) << 4) | (byte) ((s[i + 1] >>> 8) & 0x0F));
+            output[byteIndex++] = (byte) (s[i + 1] & 0xFF);
         }
-        return a;
-    }
-
-    public static short urShift(short a, int bits) {
-        for (int i = 0; i < bits; i++) {
-            a = (short) (a >>> 1 & 0x7FFF);
-        }
-        return a;
-    }
-
-    public static byte urShift(byte a, int bits) {
-        for (int i = 0; i < bits; i++) {
-            a = (byte) (a >>> 1 & 0x7F);
-        }
-        return a;
+        return output;
     }
 
     static short lrswap(short _in) {
@@ -121,22 +143,5 @@ public class BitOperator {
 
     public static byte right(byte _b) {
         return (byte) (_b & 0b00001111);
-    }
-
-    public static void main(String[] args) {
-        byte b = 0x7F;
-        short s = 0x7FFF;
-        int i = 0x7FFFFFFF;
-        long t = 0x7FFFFFFFFFFFFFFFL;
-        System.out.println(int2binary(b, 8));
-        System.out.println(int2binary(urShift(b, 3), 8));
-        System.out.println(int2binary(s, 16));
-        System.out.println(int2binary(urShift(s, 3), 16));
-        System.out.println(int2binary(i, 32));
-        System.out.println(int2binary(urShift(i, 3), 32));
-        System.out.println(int2binary(t, 64));
-        System.out.println(int2binary(urShift(t, 3), 64));
-
-        // System.out.println(int2binary((byte)(-100),8));
     }
 }

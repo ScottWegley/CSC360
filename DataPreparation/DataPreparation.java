@@ -3,6 +3,7 @@ package DataPreparation;
 import Libraries.BitOperator;
 
 public class DataPreparation {
+
     public static short[] preprocess(String s) {
         int _l = s.getBytes().length;
         while (_l % 3 != 0) {
