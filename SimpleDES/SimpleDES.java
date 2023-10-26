@@ -4,26 +4,59 @@ import Libraries.BitOperator;
 
 class SimpleDES {
 
-    public static final int ROUNDS = 3;
+    public static final int ROUNDS = 1;
+    public static final String PLAINTEXT = "A";
+    public static final short KEY9 = 0b011011101;
 
     public static void main(String[] args) {
-        
+        System.out.println(PLAINTEXT);
+        byte[] encrypted = encrypt(PLAINTEXT,KEY9);
+        decrypt(encrypted, KEY9);
+        // short TEST = 0b111111111;
+        // System.out.println(BitOperator.int2binary(TEST, 16));
+        // short enc = encode12(TEST, 1, KEY9);
+        // short dec = decode12(enc, 1, KEY9);
+        // System.out.println(BitOperator.int2binary(dec, 16));
+
     }
 
-    byte[] encrypt(String pText, short key) {
+    public static byte[] encrypt(String pText, short key) {
         short[] arr = preprocess(pText);
+        for (short s : arr) {
+            System.out.print(BitOperator.int2binary(s, 16) + " ");
+        }
+        System.out.print('\n');
         for (int i = 0; i < arr.length; i++) {
             for (int j = 0; j < ROUNDS; j++) {
+                System.out.println("Roud " + j);
                 arr[i] = encode12(arr[i], j, key);
             }
         }
+        // System.out.print('\n');
+        // for (byte b : postprocess(arr)) {
+        //     System.out.print(BitOperator.int2binary(b, 8) + " ");
+        // }
+        // System.out.print('\n');
+        // for (short s : preprocess(postprocess(arr))) {
+        //     System.out.print(BitOperator.int2binary(s, 16) + " ");
+        // }
+        return postprocess(arr);
     }
 
-    String decrypt(byte[] cipherText, short key) {
-
+    public static void decrypt(byte[] cipherText, short key) {
+        short[] arr = preprocess(cipherText);
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = ROUNDS-1; j >= 0; j--) {
+                System.out.println("Roud " + j);
+                arr[i] = decode12(arr[i], j, key);
+            }
+        }
+        for (short s : arr) {
+            System.out.print(BitOperator.int2binary(s, 16) + " ");
+        }
     }
 
-    static short encode12(short plain, int round, short key9) {
+    public static short encode12(short plain, int round, short key9) {
         byte key = keyextractor(key9, round);
         byte left = (byte) (0x3F & (plain >>> 6));
         byte right = (byte) (0x3F & plain);
@@ -33,7 +66,7 @@ class SimpleDES {
         return out;
     }
 
-    static short decode12(short cipher, int round, short key9) {
+    public static short decode12(short cipher, int round, short key9) {
         byte key = keyextractor(key9, round);
         cipher = lrswap(cipher);
         byte right = (byte) (cipher & 0x3F);
@@ -43,6 +76,28 @@ class SimpleDES {
         short out = (short) (((short) (right) << 6) | (short) (temp));
         out = lrswap(out);
         return out;
+    }
+
+    public static short[] preprocess(byte[] s){
+        int _l = s.length;
+        while (_l % 3 != 0) {
+            _l++;
+        }
+        byte[] input = new byte[_l];
+        int i = 0;
+        while (i < s.length) {
+            input[i] = s[i++];
+        }
+        while (i < _l) {
+            input[i++] = 0b0;
+        }
+        short[] output = new short[_l / 3 * 2];
+        int shortIndex = 0;
+        for (int j = 0; j < _l / 3; j++) {
+            output[shortIndex++] = (short) ((short) (((short) input[j]) << 4) | (short) ((input[j + 1] >>> 4) & 0x0f));
+            output[shortIndex++] = (short) (((short) (input[j + 1]) << 8) | input[j + 2]);
+        }
+        return output;
     }
 
     public static short[] preprocess(String s) {
