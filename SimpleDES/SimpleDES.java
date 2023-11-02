@@ -10,7 +10,7 @@ class SimpleDES {
 
     public static void main(String[] args) {
         System.out.println(PLAINTEXT);
-        byte[] encrypted = encrypt(PLAINTEXT,KEY9);
+        byte[] encrypted = encrypt(PLAINTEXT, KEY9);
         decrypt(encrypted, KEY9);
     }
 
@@ -25,7 +25,7 @@ class SimpleDES {
                 arr[i] = encode12(arr[i], j, key);
             }
         }
-        
+
         return postprocess(arr);
     }
 
@@ -65,7 +65,7 @@ class SimpleDES {
         return out;
     }
 
-    public static short[] preprocess(byte[] s){
+    public static short[] preprocess(byte[] s) {
         int _l = s.length;
         while (_l % 3 != 0) {
             _l++;
@@ -80,7 +80,7 @@ class SimpleDES {
         }
         short[] output = new short[_l / 3 * 2];
         int shortIndex = 0;
-        for (int j = 0; j < _l / 3; j++) {
+        for (int j = 0; j < _l; j += 3) {
             output[shortIndex++] = (short) ((short) (((short) input[j]) << 4) | (short) ((input[j + 1] >>> 4) & 0x0f));
             output[shortIndex++] = (short) ((short) ((input[j + 1] & 0x0F) << 8) | input[j + 2] & 0xFF);
         }
@@ -103,7 +103,7 @@ class SimpleDES {
 
         short[] output = new short[_l / 3 * 2];
         int shortIndex = 0;
-        for (int j = 0; j < _l / 3; j++) {
+        for (int j = 0; j < _l; j += 3) {
             output[shortIndex++] = (short) ((short) (((short) input[j]) << 4) | (short) ((input[j + 1] >>> 4) & 0x0f));
             output[shortIndex++] = (short) (((short) (input[j + 1]) << 8) | input[j + 2]);
         }
